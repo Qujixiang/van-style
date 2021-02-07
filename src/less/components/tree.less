@@ -1,0 +1,64 @@
+.tree {
+  width: 100%;
+  height: 100%;
+  user-select: none;
+  
+  .tree-checkbox {
+    position: absolute;
+    opacity: 0;
+  }
+
+  .tree-folder {
+
+    & > .tree-label {
+      display: flex;
+
+      &::before {
+        .icon-angle-right();
+        order: 1;
+      }
+
+      &::after {
+        .icon-folder();
+        order: 2;
+      }
+
+      & > .tree-text {
+        order: 3;
+      }
+    }
+
+    & > .tree-sub {
+      display: none;
+      margin-left: calc(@fa-font-size-base / 2);
+      border-left: 1px solid hsl(223, 6%, 25%);
+
+      & > .tree-file {
+        margin-left: @fa-font-size-base;
+
+        &::before {
+          .icon-file();
+        }
+      }
+    }
+
+    & > .tree-checkbox:checked {
+      & + .tree-label::before {
+        transform: rotate(90deg);
+      }
+      & ~ .tree-sub {
+        display: inline-block;
+      }
+    }
+  }
+
+  & > .tree-file {
+    margin-left: @fa-font-size-base;
+    
+    & > .tree-label {
+      &::before {
+        .icon-file();
+      }
+    }
+  }
+}
